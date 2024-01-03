@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+    db:
+        container_name: postgres
+        image: postgres:16
+        volumes: 
+            - shorturl-db-data:/var/lib/postgresql/data
+        ports: 
+            - "5432:5432" 
+        env_file:
+            - .env
+        environment:
+            - "POSTGRES_DB=${POSTGRES_DB}"
+            - "POSTGRES_USER=${POSTGRES_USER}"
+            - "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}"
+            - "DB_URL=${DB_URL}"
+
+    backend:
+        container_name: backend
+        depends_on:
+            - db
+        volumes:
+            - ./backend:/app
+        ports:
+            - "8000:8000"
+        environment:
+            - SERVER_HOST=http://localhost
+        build: 
+            context: ./backend
+            dockerfile: Dockerfile
+
+volumes:
+    shorturl-db-data:
