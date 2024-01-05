@@ -1,8 +1,8 @@
-"""Add urls table
+"""First commit
 
-Revision ID: 6e17baebd108
-Revises: 365cd8fc2989
-Create Date: 2023-12-28 21:45:02.365207
+Revision ID: acb02b501996
+Revises: 
+Create Date: 2024-01-04 22:25:12.843714
 
 """
 from typing import Sequence, Union
@@ -12,8 +12,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '6e17baebd108'
-down_revision: Union[str, None] = '365cd8fc2989'
+revision: str = 'acb02b501996'
+down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 

@@ -50,6 +50,8 @@ class DatabaseSessionManager:
         except Exception:
             await session.rollback()
             raise
+        else:
+            await session.commit()
         finally:
             await session.close()
 

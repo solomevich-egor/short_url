@@ -4,7 +4,7 @@ services:
         container_name: postgres
         image: postgres:16
         volumes: 
-            - shorturl-db-data:/var/lib/postgresql/data
+            - shorturl-volume:/var/lib/postgresql/data
         ports: 
             - "5432:5432" 
         env_file:
@@ -22,12 +22,15 @@ services:
         volumes:
             - ./backend:/app
         ports:
-            - "8000:8000"
+            - "8000:80"
+        
         environment:
             - SERVER_HOST=http://localhost
         build: 
             context: ./backend
             dockerfile: Dockerfile
+        command:
+            sh /start-reload.sh
 
 volumes:
-    shorturl-db-data:
+    shorturl-volume:
